@@ -42,6 +42,7 @@ export default {
 			axios.post('/api/people', { name: this.name, age: this.age, job: this.job })
 			.then(res => {
 				this.name = this.age = this.job = null;
+				this.$parent.$refs.IndexComp.getPeople();
 				console.log(res.data);
 			})
 		},

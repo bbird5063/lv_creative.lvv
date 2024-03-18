@@ -22,14 +22,9 @@
 								class="btn btn-success">Edit</a></td>
 						<td><a @click.prevent="deletePerson(person.id)" href="#" class="btn btn-danger">Delete</a></td>
 					</tr>
-					<tr :class="{ 'd-none': person.id !== editPersonId }">
-						<!--tr :class="isEdit(person.id) ? '' : 'd-none'"-->
-						<th scope="row">{{ person.id }}</th>
-						<td><input v-model="name" type="text" class="form-control"></td>
-						<td><input v-model="age" type="number" class="form-control"></td>
-						<td><input v-model="job" type="text" class="form-control"></td>
-						<td><a @click.prevent="updatePerson(person.id)" href="#" class="btn btn-success">Update</a></td>
-					</tr>
+					<!--EditComponent :person="person" ref="edit"></EditComponent - НЕ БУДЕТ РАБОТАТЬ-->
+					<!-- Для каждого элемента свой ref со своим именем -->
+					<EditComponent :person="person" :ref="`edit_${person.id}`"></EditComponent>
 				</template>
 			</tbody>
 		</table>
@@ -37,8 +32,12 @@
 </template>
 
 <script>
+import EditComponent from './EditComponent.vue';
 export default {
 	name: 'IndexComponent',
+	components: {
+		EditComponent,
+	},
 	data() {
 		return {
 			people: null,
@@ -81,10 +80,12 @@ export default {
 
 		changePersonId(id, name, age, job) {
 			this.editPersonId = id;
-			this.name = name;
-			this.age = age;
-			this.job = job;
-
+			let editName = `edit_${id}`; // получаем динамичное название элемента массива
+			let fulleditName = this.$refs[editName][0]; // [0] обязательно, т.к. это первый эл. массива
+			console.log(this.$refs[editName]);
+			fulleditName.name = name;
+			fulleditName.age = age;
+			fulleditName.job = job;
 		},
 
 		isEdit(id) {
