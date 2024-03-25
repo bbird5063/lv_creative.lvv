@@ -1,33 +1,32 @@
 /**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
+ * Сначала мы загрузим все зависимости JavaScript этого проекта, которые
+ * включает Vue и другие библиотеки. Это отличная отправная точка, когда
+ * Создание надежных и мощных веб-приложений с использованием Vue и Laravel.
  */
-
 import './bootstrap';
 import { createApp } from 'vue';
 
 /**
- * Next, we will create a fresh Vue application instance. You may then begin
- * registering components with the application instance so they are ready
- * to use in your application's views. An example is included for you.
+ * Далее мы создадим новый экземпляр приложения Vue. 
  */
-
 const app = createApp({});
 
-import PostComponent from './components/PostComponent.vue';
-app.component('post-component', PostComponent);
+/**
+Затем вы можете начать
+ * регистрация компонентов в экземпляре приложения, чтобы они были готовы
+ * для использования в представлениях вашего приложения. Пример включен для вас.
+ */
 
-//import SinglePostComponent from './components/SinglePostComponent.vue';
-//app.component('single-post-component', SinglePostComponent);
 
+import ExampleComponent from './components/ExampleComponent.vue';
+app.component('example-component', ExampleComponent);
 
 /**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
+ * Следующий блок кода может использоваться для автоматической регистрации вашего
+ * Компоненты Vue. Он будет рекурсивно сканировать этот каталог на наличие Vue.
+ * компоненты и автоматически регистрировать их по их «basename».
  *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
+ * Например. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
  //Object.entries(import.meta.glob('./**/*.vue', { eager: true })).forEach(([path, definition]) => {
@@ -35,9 +34,9 @@ app.component('post-component', PostComponent);
  //});
 
 /**
- * Finally, we will attach the application instance to a HTML element with
- * an "id" attribute of "app". This element is included with the "auth"
- * scaffolding. Otherwise, you will need to add an element yourself.
+ * Наконец, мы прикрепим экземпляр приложения к элементу HTML с помощью
+ * атрибут «id» для «приложения». Этот элемент включен в атрибут «auth».
+ * строительные леса. В противном случае вам придется добавить элемент самостоятельно.
  */
 
 app.mount('#app');
