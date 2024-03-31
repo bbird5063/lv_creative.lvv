@@ -5,6 +5,7 @@
  */
 import './bootstrap';
 import { createApp } from 'vue';
+import router from './router';
 
 /**
  * Далее мы создадим новый экземпляр приложения Vue. 
@@ -17,9 +18,12 @@ const app = createApp({});
  * для использования в представлениях вашего приложения. Пример включен для вас.
  */
 
+//import Index from './components/Index.vue';
+//app.component('Index', Index);
 
-import ExampleComponent from './components/ExampleComponent.vue';
-app.component('example-component', ExampleComponent);
+import PostComponent from './components/PostComponent.vue';
+app.component('post-component', PostComponent);
+
 
 /**
  * Следующий блок кода может использоваться для автоматической регистрации вашего
@@ -39,4 +43,5 @@ app.component('example-component', ExampleComponent);
  * строительные леса. В противном случае вам придется добавить элемент самостоятельно.
  */
 
-app.mount('#app');
+//app.use(router).mount('#app');
+app.use(router).mount('#app'); // добавили use(router)
