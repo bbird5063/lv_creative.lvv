@@ -18,11 +18,11 @@ const app = createApp({});
  * для использования в представлениях вашего приложения. Пример включен для вас.
  */
 
-//import Index from './components/Index.vue';
-//app.component('Index', Index);
+import Index from './components/Index.vue';
+app.component('Index', Index);
 
-import PostComponent from './components/PostComponent.vue';
-app.component('post-component', PostComponent);
+//import PostComponent from './components/PostComponent.vue'; // НЕ НАДО!!! И БЕЗ НЕГО РАБОТАЕТ
+//app.component('post-component', PostComponent);
 
 
 /**
