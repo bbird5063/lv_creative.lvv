@@ -17,6 +17,14 @@ use Illuminate\Support\Facades\Route;
 //return view('welcome');
 //});
 
+
+
+
+/** 
+ * При изменений в роутерах routes\api.php, routes\web.php, router.js
+ * php artisan route:cache
+*/
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

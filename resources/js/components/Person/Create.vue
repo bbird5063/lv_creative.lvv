@@ -32,14 +32,14 @@ export default {
 		store() {
 			// 'api/people/' из routes\api.php: 'prefix' => 'people'
 			axios.post('/api/people/', { name: this.name, age: this.age, job: this.job }) // РАБОТАЕТ
-			//axios.post('/api/people/', 'name=' + this.name + '&age=' + this.age + '&job=' + this.job) // РАБОТАЕТ
+				//axios.post('/api/people/', 'name=' + this.name + '&age=' + this.age + '&job=' + this.job) // РАБОТАЕТ
 				.then(res => { // в function() не будет работать 'this.'! Только в стрелочной!
 					/* В БД все появилось. Можно очистить поля, но обычно делают редирект */
 					console.log('--router--');
 					console.log(this.name);
 					console.log(router);
-					//router.push('person.index'); // (push тоже, что redirect) НЕ РАБОТАЕТ
-					router.push('/people'); // РАБОТАЕТ
+					router.push({ name: 'person.index' }); // (push тоже, что redirect) РАБОТАЕТ
+					//router.push('/people'); // РАБОТАЕТ
 				})
 		},
 	}

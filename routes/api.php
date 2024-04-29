@@ -18,10 +18,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
+/** 
+ * При изменений в роутерах routes\api.php, routes\web.php, router.js
+ * php artisan route:cache
+*/
 Route::group(['namespace' => 'App\Http\Controllers\Person', 'prefix' => 'people'], function() {
 //Route::group(['namespace' => 'Person', 'prefix' => 'people'], function() {
 	Route::post('/', 'StoreController');
 	Route::get('/', 'IndexController');
+	Route::get('/{person}', 'ShowController');
 	Route::patch('/{person}', 'UpdateController');
 	Route::delete('/{person}', 'DeleteController');
 });
