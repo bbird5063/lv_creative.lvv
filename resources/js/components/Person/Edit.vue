@@ -10,7 +10,7 @@
 			<input type="text" v-model="job" placeholder="job" class="form-control">
 		</div>
 		<div class="mb-3">
-			<input @click.prevent="updatePerson" type="submit" value="Add" class="btn btn-primary">
+			<input @click.prevent="updatePerson" type="submit" value="Update" class="btn btn-primary">
 		</div>
 	</div>
 </template>
@@ -28,11 +28,6 @@ export default {
 	},
 
 	mounted() {
-
-		//console.log(this.$route.params); // получаем {id: '15'} // НЕ ПУТАТЬ С this.$router ИМЕННО this.$route // мы увидим луюбые парамтры, которые нарисум в http://127.0.0.1:8000/...
-
-		console.log(this.$route.params.id); // получаем 15
-
 		this.getPerson();
 	},
 
@@ -46,11 +41,11 @@ export default {
 					this.job = res.data.job;
 				})
 		},
+
 		updatePerson() {
 			axios.patch('/api/people/' + this.$route.params.id, { name: this.name, age: this.age, job: this.job })
 				.then(res => {
-					router.push({name: 'person.show'}); // РАБОТАЕТ!
-					//router.push('/people/show'); // РАБОТАЕТ!
+					router.push({ name: 'person.show', params: { id: this.$route.params.id } });
 				})
 		},
 	}
