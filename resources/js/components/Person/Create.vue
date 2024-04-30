@@ -10,14 +10,14 @@
 			<input type="text" v-model="job" placeholder="job" class="form-control">
 		</div>
 		<div class="mb-3">
-			<input @click.prevent="store" type="submit" value="Add" class="btn btn-primary">
+			<input :disabled="!isDisabled" @click.prevent="store" type="submit" value="Add" class="btn btn-primary">
+			<!--<input :disabled="!name || !age || !job" @click.prevent="store" type="submit" value="Add" class="btn btn-primary">-->
 		</div>
 	</div>
 </template>
 
 <script>
 
-import router from '../../router'; // .js(?) в router прийдет, то что "export default router"
 export default {
 	name: 'Create',
 	data() {
@@ -32,16 +32,18 @@ export default {
 		store() {
 			// 'api/people/' из routes\api.php: 'prefix' => 'people'
 			axios.post('/api/people/', { name: this.name, age: this.age, job: this.job }) // РАБОТАЕТ
-				//axios.post('/api/people/', 'name=' + this.name + '&age=' + this.age + '&job=' + this.job) // РАБОТАЕТ
 				.then(res => { // в function() не будет работать 'this.'! Только в стрелочной!
-					/* В БД все появилось. Можно очистить поля, но обычно делают редирект */
-					console.log('--router--');
-					console.log(this.name);
-					console.log(router);
-					router.push({ name: 'person.index' }); // (push тоже, что redirect) РАБОТАЕТ
+				this.$router.push({ name: 'person.index' }); // (push тоже, что redirect) РАБОТАЕТ
 					//router.push('/people'); // РАБОТАЕТ
 				})
 		},
+	},
+
+	computed: {
+		isDisabled() {
+			return this.name && this.age && this.job;
+			//return !this.name || !this.age || !this.job; // BBird - работает (:disabled="isDisabled")
+		}
 	}
 }
 </script>

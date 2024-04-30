@@ -48,12 +48,12 @@ export default {
 		getPeople() {
 			axios.get('/api/people')
 				.then(res => {
-					this.people = res.data;
+					this.people = res.data.data;
 				})
 		},
 
 		deletePerson(id) { // у нас есть в api.php: Route::delete('/{person}', 'DeleteController');
-			axios.delete('/api/people/' + id)
+			axios.delete(`/api/people/${id}`)
 				.then(res => {
 					this.getPeople();
 				})

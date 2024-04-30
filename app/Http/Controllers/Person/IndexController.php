@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Person;
 //use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Person\PersonResource; // добавили
 use App\Models\Person;
 
 class IndexController extends Controller
@@ -16,7 +17,8 @@ class IndexController extends Controller
 	*/
 	public function __invoke() {
 
-		$people = Person::all();
-		return $people;
+		$people = Person::all(); // здесь коллекция персон!
+		//return $people; // изменили на 
+		return PersonResource::collection($people);
 	}
 }

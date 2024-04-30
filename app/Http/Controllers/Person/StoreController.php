@@ -19,6 +19,7 @@ class StoreController extends Controller
 
 		$data = $request->validated();
 		$person = Person::create($data);
-		return $person; // при ассинхронных запросах мы должны данные вернуть назад
+		//return $person; // при ассинхронных запросах мы должны данные вернуть назад
+		return response([]); // возвращаем пустой массив
 	}
 }
