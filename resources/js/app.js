@@ -1,25 +1,13 @@
-import './bootstrap.js';
-import store from './store'; // добавили
 import { createApp } from 'vue';
-import router from './router.js';
-import Index from './components/Index.vue';
+import './bootstrap'; // в bootstrap 'import axios' и заголовки(.js не обязательно)
+import Index from './components/Index.vue'; // .vue ОБЯЗАТЕЛЬНО!
+import router from './router'; // .js не обязательно
+import store from './store'; // папка, index.js
 
-//require('./bootstrap.js');
-
-/*
-const app = {
-	el: '#app',
-	components: { 
-		Index,
-	},
-	//router,
-	
-};
-*/
-const app = createApp({});
+const app = createApp({}); // работает только без 'new'
 app.component('Index', Index);
 
 app.use(router).use(store).mount('#app');
-//createApp(app).use(router).mount('#app');
+
 console.log(app);
 console.log(store);

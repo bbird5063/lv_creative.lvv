@@ -1,8 +1,13 @@
+import { createApp } from 'vue';
+import './bootstrap'; // в bootstrap 'import axios' и заголовки(.js не обязательно)
 import { createRouter, createWebHistory } from 'vue-router';
-/** 
- * При изменений в роутерах routes\api.php, routes\web.php, router.js
- * php artisan route:cache
-*/
+import Index from './components/Index.vue'; // .vue ОБЯЗАТЕЛЬНО!
+import { createStore } from 'vuex';
+import person from './store/modules/person.js';
+
+const app = createApp({}); // работает только без 'new'
+app.component('Index', Index);
+
 const routes = [
 	{
 		path: '/people', component: () => import('./components/Person/Index.vue'),
@@ -28,4 +33,16 @@ const router = new createRouter({ // работает с и без 'new'
 	history: createWebHistory(),
 });
 
-export default router;
+
+
+const store = createStore({ // работает с и без 'new'
+	modules: {
+		person,
+	},
+});
+
+
+app.use(router).use(store).mount('#app');
+
+console.log(app);
+console.log(store);
